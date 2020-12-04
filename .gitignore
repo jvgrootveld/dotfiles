@@ -1,1 +1,2 @@
-**.DS_Store
+# Tmux plugin can be installed through tmux 'prefix + I'
+tmux/.tmux/plugins/*/
