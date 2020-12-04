@@ -1,0 +1,22 @@
+= {{FILE}} =
+
+== Solution Outline ==
+- [ ] {{CURSOR}}
+
+
+== Info ==
+
+
+== Findings ==
+
+
+== Questions ==
+
+
+== Draaiboek ==
+
+
+== TODO  ==
+
+
+== Taallabels ==
