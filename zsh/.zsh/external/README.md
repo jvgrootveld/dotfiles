@@ -1,5 +1,6 @@
 # How to remove a git submodule
-# https://stackoverflow.com/questions/1260748/how-do-i-remove-a-submodule/36593218#36593218
+https://stackoverflow.com/questions/1260748/how-do-i-remove-a-submodule/36593218#36593218
+
 ## Remove the submodule entry from .git/config
 git submodule deinit -f path/to/submodule
 
