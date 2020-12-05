@@ -2,34 +2,41 @@
 " https://github.com/mhinz/vim-startify
 " ---------------------------------------
 
-"" Config
+"" TODO
+"" Rename functions to localscope (Some global for FZF use)
+
+" TODO Limit to vim files only
+" Easy safe and source file
+map gr :w<cr>:so %<cr>
+
+" Config
 let g:startify_padding_left = 4
 let g:startify_change_to_vcs_root = 1 " When opening a file or bookmark, seek and change to the root directory of the VCS (if there is one).
 
-"" Remove startheader
+" Remove startheader
 let g:startify_custom_header = []
 
-"" Bookmarks
+" Bookmarks
 let g:startify_bookmarks = [
     \ {'c': '~/.config/nvim/init.vim'},
     \ ]
 
-"" Commands
-let g:startify_commands = [
-        \ ':help reference',
-        \ ['Vim Reference', 'h ref'],
-        \ {'h': 'h ref'},
-        \ {'m': ['My magical function', 'call Magic()']},
-        \ ]
+" Commands
+" let g:startify_commands = [
+"         \ ':help reference',
+"         \ ['Vim Reference', 'h ref'],
+"         \ {'h': 'h ref'},
+"         \ {'m': ['My magical function', 'call Magic()']},
+"         \ ]
+"" Add with:
+"" \ { 'type': 'commands',  'header': ['    Commands']       },
 
-"" WIP VinWiki tasks and releases
+
+" VimWiki tasks and releases
 let s:vimwiki_tasks_location='$HOME/Library/Mobile Documents/com~apple~CloudDocs/vimwiki/DearNova_projects/'
+" Spacing for filename and file title (value must includes filename length)
+let s:name_spacing_length=16
 
-"" If need to exclude directories check:
-"" stat -f "%T+%Sm+%N" -t "%Y-%m-%d %H:%M:%S" * | grep -v /
-
-"" TODO
-"" Rename functions to localscope (Some global for FZF use)
 let s:files_cache = []
 let s:cache_timeout_sec = 60 * 60 " 1h
 let s:last_cache_time = 0
@@ -71,15 +78,15 @@ function StartifyVimWikiLoadFiles(...)
     let s:files_cache = s:files
 endfunction
 
-function Tasks()
+function GroupOnCategory(file_match, group_match)
     call StartifyVimWikiLoadFiles()
 
     let files = {}
 
-    " TODO change with filer
+    " TODO change with filter
     for current_file in s:files_cache
-        if current_file.name =~ '^\u\+-'
-            let category = matchstr(current_file.name, '\(\zs\w\+\ze\).*')
+        if current_file.name =~ a:file_match
+            let category = matchstr(current_file.name, a:group_match)
             let items_in_category = get(files, category, [])
             call add(items_in_category, current_file)
             let files[category] = items_in_category
@@ -89,49 +96,13 @@ function Tasks()
     return files
 endfunction
 
-function Releases()
-    return {}
+function Tasks()
+    return GroupOnCategory('^\u\+-', '\(\zs\w\+\ze\).*')
 endfunction
 
-" function Tasks()
-"     let files = {}
-" 
-"     for file_with_date in split(system('stat -f "%Sm+%N" -t "%Y-%m-%d %H:%M:%S" "' . s:vimwiki_tasks_location . '"*'), "\n")
-"         let parts = split(file_with_date, "+")
-"         
-"         if len(parts) != 2
-"             echom "parts don't have 2 parts: " . parts
-"             continue
-"         endif
-" 
-"         let file_name = substitute(parts[1], "/.*/", "", "")
-"         let category = matchstr(file_name, '\(\zs\w\+\ze\).*')
-"         let items_in_category = get(files, category, [])
-"         call add(items_in_category, {'name': file_name, 'date': parts[0]})
-"         let files[category] = items_in_category
-"     endfor
-"     
-"     return files
-" endfunction
-
-"function Releases()
-"    let files = {}
-"
-"    for file_path in split(glob(s:vimwiki_tasks_location.'*'), '\n')
-"        let file_name = substitute(file_path, "/.*/", "", "")
-"        let creation_date = system('stat -f "%Sm" -t "%Y-%m-%d %H:%M:%S" "' . file_path . '"')
-"        let creation_date = substitute(creation_date, '\n\+$', '', '')
-"        if file_name =~ '^Release'
-"            let category = matchstr(file_name, 'Release\s\?\(\zs\w\+\ze\).*')
-"            let items_in_category = get(files, category, [])
-"            call add(items_in_category, {'name': file_name, 'date': creation_date})
-"            let files[category] = items_in_category
-"
-"        endif
-"    endfor
-"    
-"    return files
-"endfunction
+function Releases()
+    return GroupOnCategory('^Release', 'Release\s\?\(\zs\w\+\ze\).*')
+endfunction
 
 function VimWikiCreateNewTask()
     call inputsave()
@@ -147,8 +118,9 @@ function VimWikiCreateNewTask()
     let l:file_name = l:task_code . ".wiki"
     let l:file_path = s:vimwiki_tasks_location . l:file_name
 
+    " Edit new file
     execute "e " . l:file_path
-
+    " If file is new, fille with task template
     if empty(expand(glob(l:file_path)))
         execute "0r ~/.config/nvim/templates/task.wiki"
         execute "w"
@@ -162,22 +134,31 @@ function s:compare_date(left, right)
     return a:left.date < a:right.date ? 1 : a:left.date > a:right.date ? -1 : 0
 endfunction
 
+" Comare on date of the first item in given lists
+function s:compare_date_first_item(left_items, right_items)
+    return s:compare_date(a:left_items[0], a:right_items[0])
+endfunction
+
 function s:sort_on_date(items)
     return sort(a:items, function('s:compare_date'))
 endfunction
 
-let s:name_spacing_length=16
 function s:recent_tasks()
-    let items = [{'line': 'Create new Task', 'cmd': 'call VimWikiCreateNewTask()'}]
-    " TODO IDEA:
-    " define an sorted categories list
-    " Loop over categories and get tasks
-    " Loop again and handle the rest
+    let items = [{'line': 'Create new Task', 'cmd': 'call VimWikiCreateNewTask()'}] " Has manual key 't'
+
+    let item_lists = []
+    " Sort all items for each category
     for [category, file_names] in items(Tasks())
         let sorted_items = s:sort_on_date(file_names)
+        let item_lists += [sorted_items]
+    endfor
+
+    " Sort categories on date of first item
+    let item_lists = sort(item_lists, function('s:compare_date_first_item'))
+
+    " Map newest 3 items in catefory to single list
+    for sorted_items in item_lists
         let items += map(sorted_items[:2], '{"line": v:val.date . " " . v:val.name . repeat(" ", s:name_spacing_length - len(v:val.name)) . v:val.description, "cmd": "edit " . s:vimwiki_tasks_location . v:val.name}')
-        "endfor
-       "echo key . ': ' . value
     endfor
     return items
 endfunction
@@ -186,7 +167,8 @@ function s:recent_releases()
     let items = []
 
     for [category, file_names] in items(Releases())
-       let items += map(file_names, '{"line": v:val.name . " (". v:val.date .")\, "cmd": "edit " . s:vimwiki_tasks_location . v:val.name}')
+        let items += map(file_names[:2], '{"line": v:val.date . " " . v:val.name, "cmd": "edit " . s:vimwiki_tasks_location . v:val.name}')
+       "let items += map(file_names, '{"line": v:val.name . " (". v:val.date .")\, "cmd": "edit " . s:vimwiki_tasks_location . v:val.name}')
         "for file_name in file_names
         "endfor
        "echo key . ': ' . value
@@ -195,28 +177,13 @@ function s:recent_releases()
 endfunction
 
 
-"echo Tasks()
-" TODO Limit to vim files only
-map gr :w<cr>:so %<cr>
 
-function s:foobar()
-    return [
-          \ { 'line': 'foo', 'cmd': 'echo "FOO!"' },
-          \ { 'line': 'bar', 'cmd': 'echo "BAR!"' },
-          \ ]
-  endfunction
-
-"" Build startpage
+" Build startpage
 let g:startify_lists = [
+    \ { 'type': 'sessions',  'header': ['    Sessions']       },
     \ { 'type': function('s:recent_tasks'), 'header': ['    Tasks'], 'indices': ['t'] },
     \ { 'type': function('s:recent_releases'), 'header': ['    Releases'] },
-    \ { 'type': 'sessions',  'header': ['    Sessions']       },
     \ { 'type': 'files',     'header': ['    Most recent files']            },
     \ { 'type': 'dir',       'header': ['    Most recent files current dir: '. getcwd()] },
     \ { 'type': 'bookmarks', 'header': ['    Bookmarks']      },
-    \ { 'type': 'commands',  'header': ['    Commands']       },
     \ ]
-
-"" TODO
-" - Custom list https://github.com/mhinz/vim-startify/wiki/Example-configurations
-" - Intergrate with VimWiki and last items (release, Jira tasks)

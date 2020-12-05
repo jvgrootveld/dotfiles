@@ -24,8 +24,8 @@ WINDOW_NAME=Infra
 tmux new-window -t $SESSION_NAME -n $WINDOW_NAME
 tmux send-keys -t $SESSION_NAME:$WINDOW_NAME "cd ~/work/bop/_repos/bvmop-infra" Enter
 tmux split-window -t $SESSION_NAME:$WINDOW_NAME -v -c "$PWD/bvmop-infra"
+tmux resize-pane -t $SESSION_NAME:$WINDOW_NAME.bottom -y 75
 tmux split-window -t $SESSION_NAME:$WINDOW_NAME.bottom -h -c "$PWD/bvmop-infra"
-tmux resize-pane -t $SESSION_NAME:$WINDOW_NAME.top -y 25
 
 # 3 Shell: General shell use
 WINDOW_NAME=Shell
