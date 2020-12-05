@@ -1,2 +1,5 @@
 # Tmux plugin can be installed through tmux 'prefix + I'
 tmux/.tmux/plugins/*/
+
+# Ignore vim plugins. Can be installed with ':PlugInstall'
+nvim/.config/nvim/plugged/*/
