@@ -19,3 +19,5 @@ endfor
 " - Functions
 " - Snippets
 
+command! -bang -nargs=? -complete=dir HFiles
+  \ call fzf#vim#files(<q-args>, {'source': 'ag --hidden --ignore .git -g ""'}, <bang>0)
