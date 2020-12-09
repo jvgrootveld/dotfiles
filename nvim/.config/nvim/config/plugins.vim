@@ -45,3 +45,8 @@ call plug#end()
 "" This executes the command silently and ignores errors
 silent! colorscheme gruvbox
 set background=dark
+
+" Load custom plugin config
+for f in split(glob('$HOME/.config/nvim/config/plugin_*.vim'), '\n')
+    exe 'source' f
+endfor
