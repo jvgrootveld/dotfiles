@@ -15,6 +15,8 @@ let g:startify_bookmarks = [
     \ {'s': '~/.config/nvim/config/plugin_startify.vim'},
     \ ]
 
+" Load possible cache from disk
+call task#loadCache()
 
 " Build startpage
 let g:startify_lists = [

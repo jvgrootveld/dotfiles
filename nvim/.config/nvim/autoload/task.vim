@@ -13,6 +13,30 @@ let s:files_cache = []
 let s:cache_timeout_sec = 60 * 60 " 1h
 let s:last_cache_time = 0
 
+let s:file_cache_path = glob('$HOME/') . '.jvgvimtaskscache'
+
+function task#saveCache()
+    let l:cache_data = {
+                \ 'files': s:files_cache,
+                \ 'time': s:last_cache_time,
+                \ }
+    call writefile([string(l:cache_data)], s:file_cache_path, 'b')
+endfunction
+
+function task#loadCache()
+    if !filereadable(s:file_cache_path)
+        return
+    endif
+    " Load raw data as string
+    let l:cache_data = readfile(s:file_cache_path, "b")[0]
+    " Interpret string as code
+    " See https://stackoverflow.com/a/31350133/874249
+    execute "let l:cache_data = " . l:cache_data
+    " Set variables
+    let s:files_cache = l:cache_data.files
+    let s:last_cache_time = l:cache_data.time
+endfunction
+
 " Load and caches files founnd in task folder
 " One entry has the following variables:
 "
@@ -54,6 +78,7 @@ function task#loadFiles(...)
     endfor
 
     let s:files_cache = l:files
+    call task#saveCache()
 endfunction
 
 " Create new Task with template
