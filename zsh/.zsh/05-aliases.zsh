@@ -29,9 +29,11 @@ alias kgpo='kubectl get pod'
 alias kd='kubectl describe'
 
 # Java version switch
-export JAVA_8_HOME=$(/usr/libexec/java_home -v1.8)
+#export JAVA_8_HOME=$(/usr/libexec/java_home -v1.8)
+export JAVA_8_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_131.jdk/Contents/Home
 #export JAVA_11_HOME=$(/usr/libexec/java_home -v11)
-export JAVA_13_HOME=$(/usr/libexec/java_home -v13)
+#export JAVA_13_HOME=$(/usr/libexec/java_home -v13)
+export JAVA_13_HOME=/Library/Java/JavaVirtualMachines/openjdk-13.0.2.jdk/Contents/Home
 
 # Define aliases for easy java version switching
 alias java8='export JAVA_HOME=$JAVA_8_HOME'
