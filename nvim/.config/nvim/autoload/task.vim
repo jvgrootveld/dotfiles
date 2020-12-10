@@ -15,7 +15,7 @@ let s:last_cache_time = 0
 
 let s:file_cache_path = glob('$HOME/') . '.jvgvimtaskscache'
 
-function task#saveCache()
+function! task#saveCache()
     let l:cache_data = {
                 \ 'files': s:files_cache,
                 \ 'time': s:last_cache_time,
@@ -23,7 +23,7 @@ function task#saveCache()
     call writefile([string(l:cache_data)], s:file_cache_path, 'b')
 endfunction
 
-function task#loadCache()
+function! task#loadCache() abort
     if !filereadable(s:file_cache_path)
         return
     endif
@@ -45,8 +45,8 @@ endfunction
 "   description   The first line of the file content
 " 
 " Supports force reload by giving '1' as argument
-function task#loadFiles(...)
-    let l:force_reload = get(a:, 1, 0)
+function! task#loadFiles(...) abort
+    let l:force_reload = get(a:, 1, v:false)
 
     " Don't load files of not l:forces and cache is not timedout
     if l:force_reload != 1 && (localtime() - s:last_cache_time < s:cache_timeout_sec)
@@ -83,7 +83,7 @@ endfunction
 
 " Create new Task with template
 " Asks for task code
-function task#newTask()
+function! task#newTask() abort
     call inputsave()
     let l:task_code = input('Enter task code (format JIRATASK-numer): ')
     call inputrestore()
@@ -93,7 +93,7 @@ function task#newTask()
     endif
 
     if l:task_code !~ '^\a\+-'
-        echo "ERROR: Incorrect Task format given"
+        echoerr "ERROR: Incorrect Task format given"
         return
     endif
 
@@ -115,7 +115,7 @@ endfunction
 
 " Create new Release with template
 " Asks for release name
-function task#newRelease()
+function! task#newRelease() abort
     call inputsave()
     let l:release_name = input('Enter Release (format Release PROJ version): ')
     call inputrestore()
@@ -125,7 +125,7 @@ function task#newRelease()
     endif
 
     if l:release_name !~ '^Release\s\u\+\s'
-        echo "ERROR: Incorrect Release format given. Example 'Release MOP 1.24"
+        echoerr "ERROR: Incorrect Release format given. Example 'Release MOP 1.24"
         return
     endif
 
@@ -165,7 +165,7 @@ endfunction
 "   'BRMT': [.. list of file entries],
 " }
 "
-function s:groupOnCategory(file_match, group_match)
+function! s:groupOnCategory(file_match, group_match)
     call task#loadFiles()
 
     let l:files = {}
@@ -183,48 +183,37 @@ function s:groupOnCategory(file_match, group_match)
 endfunction
 
 " Get all tasks
-function task#tasks()
+function! task#tasks()
     return s:groupOnCategory('^\u\+-', '\(\zs\w\+\ze\).*')
 endfunction
 
 " Get al release files
-function task#releases()
+function! task#releases()
     return s:groupOnCategory('^Release', 'Release\s\?\(\zs\w\+\ze\).*')
 endfunction
 
 " Helper function to compare two dates
-function s:compare_date(left, right)
+function! s:compare_date(left, right)
     return a:left.date < a:right.date ? 1 : a:left.date > a:right.date ? -1 : 0
 endfunction
 
-" Comare on date of the first item in given lists
-function s:compare_date_first_item(left_items, right_items)
-    return s:compare_date(a:left_items[0], a:right_items[0])
-endfunction
-
-" Sort given items with the 's:compare_date' function
-function s:sort_on_date(items)
-    return sort(a:items, function('s:compare_date'))
-endfunction
-
-
 " Sort all items for each category
 " And sort categories on date of first item
-function s:sort_items_and_categories(category_with_items)
+function! s:sort_items_and_categories(category_with_items)
     let l:item_lists = []
     " Sort all items for each category
     for [category, file_names] in items(a:category_with_items)
-        let sorted_items = s:sort_on_date(file_names)
+        let sorted_items = sort(file_names, {a, b -> s:compare_date(a, b)})
         let l:item_lists += [sorted_items]
     endfor
 
     " Sort categories on date of first item
-    return sort(l:item_lists, function('s:compare_date_first_item'))
+    return sort(l:item_lists, {a, b -> s:compare_date(a[0], b[0])})
 endfunction
 
 " Get recent tasks
 " Returns the first 3 items of every category
-function task#recentTasks()
+function! task#recentTasks()
     let l:items = [{'line': 'Create new Task', 'cmd': 'call task#newTask()'}] " Has manual key 't'
 
     " Map newest 3 items in catefory to single list
@@ -237,7 +226,7 @@ endfunction
 
 " Get recent releases
 " Returns the first 3 items of every category
-function task#recentReleases()
+function! task#recentReleases()
     let l:items = [{'line': 'Create new Release', 'cmd': 'call task#newRelease()'}] " Has manual key 'r'
 
     " Map newest 3 items in catefory to single list
