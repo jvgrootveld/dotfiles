@@ -11,16 +11,22 @@ Plug 'ntk148v/vim-horizon'
 Plug 'gruvbox-community/gruvbox'
 Plug 'vim-airline/vim-airline'
 
-Plug 'tpope/vim-fugitive'   " Git plugin
-Plug 'vimwiki/vimwiki'      " Wiki in vim
-Plug 'mhinz/vim-startify'   " Fancy start screen
-Plug 'vim-utils/vim-man'    " View man pages in vim `:Man`
+Plug 'tpope/vim-surround'                           " Provides mappings to easily delete, change and add such surroundings in pairs
+Plug 'tpope/vim-commentary'                         " Comment stuff out. Use gcc to comment out a line (takes a count), gc to comment out the target of a motion
+Plug 'tpope/vim-fugitive'                           " Git plugin
+Plug 'tpope/vim-rhubarb'                            " If fugitive.vim is the Git, rhubarb.vim is the Hub
+Plug 'airblade/vim-gitgutter'                       " Shows a git diff in the sign column. It shows which lines have been added, modified, or removed
+Plug 'junegunn/gv.vim'                              " Git commit browser
+Plug 'vimwiki/vimwiki'                              " Wiki in vim
+Plug 'mhinz/vim-startify'                           " Fancy start screen
+Plug 'vim-utils/vim-man'                            " View man pages in vim `:Man`
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } } " General-purpose command-line fuzzy finder
-Plug 'junegunn/fzf.vim'     " FZF for vim
+Plug 'junegunn/fzf.vim'                             " FZF for vim
 Plug 'prettier/vim-prettier', {
   \ 'do': 'yarn install',
   \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html'] }
 Plug 'junegunn/vim-easy-align' " Vertical align
+Plug 'machakann/vim-highlightedyank'                " Highlight yanked content
 
 "" Telescope is a highly extendable fuzzy finder over lists. Items are shown in a popup with a prompt to search over.
 Plug 'nvim-lua/popup.nvim'
