@@ -10,7 +10,7 @@ let s:vimwiki_tasks_location='$HOME/Library/Mobile Documents/com~apple~CloudDocs
 let s:name_spacing_length=16
 
 let s:files_cache = []
-let s:cache_timeout_sec = 60 * 60 " 1h
+let s:cache_timeout_sec = 60 * 60 * 144 " hours (6 days)
 let s:last_cache_time = 0
 
 let s:file_cache_path = glob('$HOME/') . '.jvgvimtaskscache'
