@@ -30,6 +30,7 @@ set backspace=indent,eol,start    " Allow backspace to delete end of line, inden
 set cmdheight=2                   " Number of screen lines to use for the command-line = Give more space for displaying messages.
 set splitright                    " Splitting a window will put the new window right of the current one
 set noshowmode                    " Turn off message if in Insert, Replace or Visual mode
+set path+=**                      " Add recursive subfolder matching on find/tab completion
 
 " CoC plugin
 set updatetime=300                " Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable delays and poor user experience
