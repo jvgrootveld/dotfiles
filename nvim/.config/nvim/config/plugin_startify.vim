@@ -3,6 +3,7 @@
 " ---------------------------------------
 
 " Config
+let g:startify_disable_at_vimenter = 1 " Don't run Startify at Vim startup. You can still call it anytime via :Startify.
 let g:startify_padding_left = 4
 let g:startify_change_to_vcs_root = 1 " When opening a file or bookmark, seek and change to the root directory of the VCS (if there is one).
 

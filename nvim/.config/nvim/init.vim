@@ -9,9 +9,5 @@ for f in split(glob('$HOME/.config/nvim/functions/*.vim'), '\n')
     exe 'source' f
 endfor
 
-" TODO (in different folder)
-" - Functions
-" - Snippets
-
 command! -bang -nargs=? -complete=dir HFiles
   \ call fzf#vim#files(<q-args>, {'source': 'ag --hidden --ignore .git -g ""'}, <bang>0)

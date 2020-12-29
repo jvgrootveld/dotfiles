@@ -8,7 +8,7 @@ export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
 export PATH="$PATH:/Users/justinvangrootveld/idea" # Idea
 
 # Color
-export TERM="xterm-256color"
+# export TERM="xterm-256color"
 
 # Preferred text editor
 export EDITOR=nvim

@@ -33,3 +33,11 @@ nmap <leader>0 :Startify<CR>
 xmap ga <Plug>(EasyAlign)
 """ Start interactive EasyAlign for a motion/text object (e.g. gaip)
 nmap ga <Plug>(EasyAlign)
+
+" Commands
+
+"" FZF
+let b:project_dir='$HOME/Library/Mobile Documents/com~apple~CloudDocs/vimwiki'
+
+command! -bang ProjectFiles
+        \ call fzf#vim#files(b:project_dir, fzf#vim#with_preview(), <bang>0)
