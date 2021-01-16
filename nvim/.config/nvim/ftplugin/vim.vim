@@ -1,3 +1,3 @@
 " Easy safe and source file
-map gr :w<cr>:so %<cr>
+nnoremap <buffer> gr :w<cr>:so %<cr>
 
