@@ -49,6 +49,7 @@ brew install maven@3.3           # Maven Version 3.3.x
 brew install stow                # Symlink farm manager
 brew install tree                # Terminal tree viewer
 brew install bat                 # Clone of cat(1) with syntax highlighting and Git integration
+brew install fd                  # fd is a simple, fast and user-friendly alternative to find.
 
 # After installs
 # -----------------------------------------------
