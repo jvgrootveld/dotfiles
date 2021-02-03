@@ -44,4 +44,4 @@ alias java13='export JAVA_HOME=$JAVA_13_HOME'
 java13
 
 # NVIM nightly
-alias nv='VIMRUNTIME=$HOME/nvim-nightly/share/nvim/runtime $HOME/nvim-nightly/bin/nvim "$@"'
+alias nv='VIMRUNTIME=$HOME/nvim-nightly/build/share/nvim/runtime $HOME/nvim-nightly/build/bin/nvim "$@"'

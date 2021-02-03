@@ -3,12 +3,6 @@
 
 call plug#begin('~/.config/nvim/plugged')
 
-"" Neovim lsp Plugins
-"Plug 'neovim/nvim-lspconfig'
-"Plug 'nvim-lua/completion-nvim'
-"Plug 'tjdevries/nlua.nvim'
-"Plug 'tjdevries/lsp_extensions.nvim'
-
 "" Themes
 Plug 'ntk148v/vim-horizon'
 Plug 'gruvbox-community/gruvbox'
@@ -22,6 +16,13 @@ if has("nvim-0.5")
     Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
     " Show:    :TSPlaygroundToggle
     Plug 'nvim-treesitter/playground'
+
+    " Neovim lsp Plugins
+    " See: https://github.com/neovim/nvim-lspconfig/blob/master/CONFIG.md
+    Plug 'neovim/nvim-lspconfig'
+    Plug 'nvim-lua/completion-nvim'
+    "Plug 'tjdevries/nlua.nvim'
+    "Plug 'tjdevries/lsp_extensions.nvim'
 endif
 
 Plug 'tpope/vim-surround'                           " Provides mappings to easily delete, change and add such surroundings in pairs
@@ -38,8 +39,9 @@ Plug 'junegunn/fzf.vim'                             " FZF for vim
 Plug 'prettier/vim-prettier', {
   \ 'do': 'yarn install',
   \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html'] }
-Plug 'junegunn/vim-easy-align' " Vertical align
+Plug 'junegunn/vim-easy-align'                      " Vertical align
 Plug 'machakann/vim-highlightedyank'                " Highlight yanked content
+Plug 'kassio/neoterm'                               " Neovim/Vim terminal helper functions/commands
 
 "" Telescope is a highly extendable fuzzy finder over lists. Items are shown in a popup with a prompt to search over.
 Plug 'nvim-lua/popup.nvim'
@@ -48,6 +50,9 @@ Plug 'nvim-telescope/telescope.nvim'
 
 "" Language support
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+
+"" WIP own plugins
+Plug '~/projects/_repos/nvim-checkie-chan'
 
 " Plug 'neoclide/coc.nvim', {'branch': 'release'} " True snippet and additional text editing support
 " CoC recommended config
@@ -71,6 +76,11 @@ let mapleader = " "
 
 " Remaps
 nnoremap <leader>c :edit ~/.config/nvim/init.vim<CR>
+nnoremap <leader>e :Buffers<CR>
+nnoremap <leader>f :Telescope find_files<CR>
+
+"" Paste inner '`' and yank it back into the register
+nnoremap <leader>` vi`pvi`y
 
 "" Resize windows with ALT + hjkl
 nnoremap <M-j> :resize -2<CR>
@@ -92,13 +102,27 @@ nmap <leader>4 4<Plug>VimwikiIndex
 ""nmap <leader>0 5<Plug>VimwikiIndex
 
 "" Startify
-nmap <leader>0 :Startify<CR>
+nnoremap <leader>0 :Startify<CR>
 
 "" Easy Align
 """ Start interactive EasyAlign in visual mode (e.g. vipga)
-xmap ga <Plug>(EasyAlign)
+xnoremap ga <Plug>(EasyAlign)
 """ Start interactive EasyAlign for a motion/text object (e.g. gaip)
-nmap ga <Plug>(EasyAlign)
+nnoremap ga <Plug>(EasyAlign)
+
+"" Neoterm
+" Create new command
+nnoremap <leader>tn :Tnew<CR>
+" Run last command
+nnoremap <leader>tr :call neoterm#map_do()<CR>
+" Clear the neoterm
+nnoremap <leader>tc :Tclear<CR>
+" Clear the neoterm
+nnoremap <leader>tt :Ttoggle<CR>
+" Clear the neoterm
+nnoremap <leader>tq :Tclose<CR>
+" Start new automatting on 'T'
+nnoremap <leader>tm :Tmap 
 
 " Commands
 
