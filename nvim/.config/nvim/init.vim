@@ -23,6 +23,12 @@ if has("nvim-0.5")
     Plug 'nvim-lua/completion-nvim'
     "Plug 'tjdevries/nlua.nvim'
     "Plug 'tjdevries/lsp_extensions.nvim'
+
+    "" Telescope is a highly extendable fuzzy finder over lists. Items are shown in a popup with a prompt to search over.
+    Plug 'nvim-lua/popup.nvim'
+    Plug 'nvim-lua/plenary.nvim'
+    Plug 'nvim-telescope/telescope.nvim'
+    Plug 'nvim-telescope/telescope-fzy-native.nvim'
 endif
 
 Plug 'tpope/vim-surround'                           " Provides mappings to easily delete, change and add such surroundings in pairs
@@ -42,11 +48,6 @@ Plug 'prettier/vim-prettier', {
 Plug 'junegunn/vim-easy-align'                      " Vertical align
 Plug 'machakann/vim-highlightedyank'                " Highlight yanked content
 Plug 'kassio/neoterm'                               " Neovim/Vim terminal helper functions/commands
-
-"" Telescope is a highly extendable fuzzy finder over lists. Items are shown in a popup with a prompt to search over.
-Plug 'nvim-lua/popup.nvim'
-Plug 'nvim-lua/plenary.nvim'
-Plug 'nvim-telescope/telescope.nvim'
 
 "" Language support
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
@@ -77,7 +78,10 @@ let mapleader = " "
 " Remaps
 nnoremap <leader>c :edit ~/.config/nvim/init.vim<CR>
 nnoremap <leader>e :Buffers<CR>
-nnoremap <leader>f :Telescope find_files<CR>
+nnoremap <leader>ff :Telescope find_files<CR>
+nnoremap <leader>fb :lua require('telescope.builtin').buffers()<CR>
+nnoremap <leader>fc :lua require('jvg.telescope').edit_neovim()<CR>
+nnoremap <leader>ft :lua require('jvg.telescope').task_files()<CR>
 
 "" Paste inner '`' and yank it back into the register
 nnoremap <leader>` vi`pvi`y
