@@ -1,6 +1,7 @@
 [user]
 	email = jvgrootveld@dearnova.nl
 	name = Justin van Grootveld
+	signingkey = 9C6F955C8BFD6740
 [alias]
 	# Open git config in vim
 	ec = config --global -e
