@@ -51,6 +51,7 @@ brew install tree                # Terminal tree viewer
 brew install bat                 # Clone of cat(1) with syntax highlighting and Git integration
 brew install fd                  # fd is a simple, fast and user-friendly alternative to find.
 brew install luarocks            # Install Lua modules as self-contained packages called rocks
+brew install nvm                 # Manage multiple Node.js versions
 
 # After installs
 # -----------------------------------------------
