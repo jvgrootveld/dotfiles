@@ -40,11 +40,13 @@ export LESSCHARSET=utf-8
 eval "$(zoxide init zsh)"
 
 # Temp help print for z till I know
-Z_EXPLAIN="z foo       # cd to highest ranked directory matching foo\n"
+Z_EXPLAIN="z is an alias for 'zoxide'. Run 'zoxide -h' for help"
+Z_EXPLAIN+="z foo       # cd to highest ranked directory matching foo\n"
 Z_EXPLAIN+="z foo bar   # cd to highest ranked directory matching foo and bar\n"
 Z_EXPLAIN+="z foo/      # can also cd into actual directories\n"
 Z_EXPLAIN+="zi foo      # cd with interactive selection using fzf\n"
 Z_EXPLAIN+="zq foo      # echo the best match, dont cd\n"
+Z_EXPLAIN+="zq -ls      # List all entries with its score.\n"
 Z_EXPLAIN+="za /foo     # add /foo to the database\n"
 Z_EXPLAIN+="zr /foo     # remove /foo from the database\n"
 alias zz="printf '$Z_EXPLAIN'"
