@@ -1,0 +1,51 @@
+
+let mapleader = " "
+
+" Emulated Vim Plugins
+
+"" Commands: ys, cs, ds, S
+set surround
+
+"" Commands: gcc, gc + motion, v_gc
+set commentary
+
+"" Commands: <A-n>, <A-x>, <A-p>, g<A-n>
+"" https://github.com/terryma/vim-multiple-cursors
+set multiple-cursors
+
+"" Add argument text object
+"" Additional text objects: aa, ia
+"" Commands: caa (Change a argument)
+set argtextobj
+
+"" On the first use, define the first {motion} to exchange.
+"" On the second use, define the second {motion} and perform the exchange.
+"" Commands:
+""   cx     Change with motion
+""   cxx    Whole line
+""   X      Visual mode
+""   cxc    Clear pending
+set exchange
+
+set highlightedyank
+
+" Options
+set number relativenumber         " Turn hybrid line numbers on
+set nohlsearch                    " Turn off highlight after search
+set noerrorbells                  " Turn off ring a bell onn error
+set smartcase                     " Ignore case in search
+set incsearch                     " Incremental searching (search as you type)
+set scrolloff=8                   " Minimal number of screen lines to keep above and below the cursor
+set showcmd                       " Show (partial) command in the last line of the screen
+set clipboard+=unnamed            " use system clipboard http://stackoverflow.com/questions/8134647/copy-and-paste-in-vim-via-keyboard-between-different-mac-terminals
+set cmdheight=2                   " Number of screen lines to use for the command-line = Give more space for displaying messages.
+set splitright                    " Splitting a window will put the new window right of the current one
+set noshowmode                    " Turn off message if in Insert, Replace or Visual mode
+set path+=**                      " Add recursive subfolder matching on find/tab completion
+
+let g:highlightedyank_highlight_duration = "50"
+let g:highlightedyank_highlight_color = "rgba(160, 160, 160, 70)"
+
+" Key mappings
+inoremap <C-n> <ESC>:action HippieCompletion<CR>
+inoremap <C-p> <ESC>:action HippieBackwardCompletion<CR>
