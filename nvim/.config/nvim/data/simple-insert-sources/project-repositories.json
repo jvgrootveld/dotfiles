@@ -1,0 +1,18 @@
+[
+  { "display": "BVMOP Axon Integration Service", "insert": "`axon-integration-service`" },
+  { "display": "BVM Axon Client", "insert": "`axon-client`" },
+  { "display": "MBVM Insured Assets Service (IAS)", "insert": "`insured-assets-service`" },
+  { "display": "MBVM Insured Assets Frontend", "insert": "`insured-assets-frontend`" },
+  { "display": "MBVM Content", "insert": "`mbvm-content`" },
+  { "display": "BVMOP OnBase Integration Service", "insert": "`onbase-integration-service`" },
+  { "display": "MBVM Address Service", "insert": "`address-service`" },
+  { "display": "BVMOP Frontend", "insert": "`bvmop-frontend`" },
+  { "display": "BVMOP XC Axon Plugin", "insert": "`bvmop-xc-axon`" },
+  { "display": "MBVM Contract Service", "insert": "`contract-service`" },
+  { "display": "MBVM GPS Frontend", "insert": "`mbvm-gps-frontend`" },
+  { "display": "MBVM Fleet Frontend", "insert": "`mbvm-fleet-frontend`" },
+  { "display": "MBVM Damage Frontend", "insert": "`mbvm-damage-frontend`" },
+  { "display": "MBVM Import Export Service (IES)", "insert": "`mbvm-import-export-service`" },
+  { "display": "MBVM Common Utils", "insert": "`mbvm-common-utils`" },
+  { "display": "BVMOP Infra", "insert": "`bvmop-infra`" }
+]

@@ -4,6 +4,9 @@
 - [ ] {{CURSOR}}
 
 
+== Functional Criteria ==
+- [ ] Item 1
+
 == Info ==
 
 
@@ -16,7 +19,7 @@
 == Draaiboek ==
 
 
-== TODO  ==
+== Todo  ==
 
 
 == Taallabels ==
