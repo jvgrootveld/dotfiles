@@ -1,5 +1,5 @@
 --            _
---           (_)_   __ ____ _   
+--           (_)_   __ ____ _
 --          / /| | / // __ `/  Justin van Grootveld 
 --         / / | |/ // /_/ /   https://github.com/jvgrootveld
 --      __/ /  |___/ \__, /
@@ -56,6 +56,6 @@ vim.api.nvim_set_keymap(
 vim.api.nvim_set_keymap(
 	"n",
 	"<leader>cd",
-	":lua R'telescope'.extensions.zoxide.list{}<CR>",
+	":lua require'telescope'.extensions.zoxide.list{}<CR>",
 	{noremap = true, silent = true}
 )

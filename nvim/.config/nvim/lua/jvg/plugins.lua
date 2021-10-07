@@ -5,12 +5,12 @@ if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
   vim.api.nvim_command('!git clone https://github.com/wbthomason/packer.nvim '..install_path)
 end
 vim.cmd [[packadd packer.nvim]]
-vim.cmd 'autocmd BufWritePost plugins.lua PackerCompile' -- Auto compile when there are changes in plugins.lua
+-- vim.cmd 'autocmd BufWritePost plugins.lua PackerCompile' -- Auto compile when there are changes in plugins.lua
 
 return require('packer').startup {
   function(use)
     -- Packer can manage itself
-    use {'wbthomason/packer.nvim', opt = true}
+    use "wbthomason/packer.nvim"
 
     use 'nvim-lua/popup.nvim'
     use 'nvim-lua/plenary.nvim'
@@ -42,6 +42,12 @@ return require('packer').startup {
     }
     -- Show:    :TSPlaygroundToggle
     use 'nvim-treesitter/playground'
+    use {
+        'nvim-treesitter/nvim-treesitter-textobjects',
+
+        config = [[require("jvg/config/treesitter-textobjects")]],
+    }
+    use 'bryall/contextprint.nvim' -- Add context aware print debug statements
 
     -- Telescope is a highly extendable fuzzy finder over lists. Items are shown in a popup with a prompt to search over.
     use 'nvim-telescope/telescope.nvim'
@@ -49,7 +55,21 @@ return require('packer').startup {
     -- use '~/projects/_repos/telescope-simple-insert'
     use 'jvgrootveld/telescope-simple-insert'
     -- use '~/projects/_repos/telescope-zoxide'
-    use 'jvgrootveld/telescope-zoxide'
+    use {
+        'jvgrootveld/telescope-zoxide',
+        branch = 'main'
+    }
+    use {
+        'sudormrfbin/cheatsheet.nvim',                 -- A searchable cheatsheet for neovim from within the editor using Telescope
+
+        config = [[require("jvg/config/cheatsheet")]],
+
+        requires = {
+            {'nvim-telescope/telescope.nvim'},
+            {'nvim-lua/popup.nvim'},
+            {'nvim-lua/plenary.nvim'},
+        }
+    }
 
     use 'tpope/vim-surround'                           -- Provides mappings to easily delete, change and add such surroundings in pairs
     use 'tpope/vim-commentary'                         -- Comment stuff out. Use gcc to comment out a line (takes a count), gc to comment out the target of a motion
@@ -57,6 +77,10 @@ return require('packer').startup {
     use 'tpope/vim-rhubarb'                            -- If fugitive.vim is the Git, rhubarb.vim is the Hub
     use 'airblade/vim-gitgutter'                       -- Shows a git diff in the sign column. It shows which lines have been added, modified, or removed
     use 'junegunn/gv.vim'                              -- Git commit browser
+    use {                                              -- A work-in-progress Magit clone for Neovim that is geared toward the Vim philosophy.
+        'TimUntersberger/neogit',
+        requires = 'nvim-lua/plenary.nvim'
+    }
     use 'vimwiki/vimwiki'                              -- Wiki in vim
     use 'mhinz/vim-startify'                           -- Fancy start screen
     use 'vim-utils/vim-man'                            -- View man pages in vim `:Man`
@@ -73,12 +97,11 @@ return require('packer').startup {
     use 'junegunn/vim-easy-align'                      -- Vertical align
     use 'machakann/vim-highlightedyank'                -- Highlight yanked content
     use 'kassio/neoterm'                               -- Neovim/Vim terminal helper functions/commands
-
     -- peeks lines on `:<number>`
-    use {
-        'nacro90/numb.nvim',
-        run = require('numb').setup()
-    }
+    -- use {
+    --     'nacro90/numb.nvim',
+    --     run = require('numb').setup()
+    -- }
 
     -- Language support
     -- use {

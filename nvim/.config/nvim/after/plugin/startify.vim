@@ -22,9 +22,11 @@ call task#loadCache()
 " Build startpage
 let g:startify_lists = [
     \ { 'header': ['    Sessions'],                                  'type': 'sessions' },
-    \ { 'header': ['    Tasks'],                                     'type': function('task#recentTasks'),    'indices': ['t'] },
-    \ { 'header': ['    Releases'],                                  'type': function('task#recentReleases'), 'indices': ['r'] },
     \ { 'header': ['    Most recent files'],                         'type': 'files'     },
     \ { 'header': ['    Most recent files current dir: '. getcwd()], 'type': 'dir'       },
     \ { 'header': ['    Bookmarks'],                                 'type': 'bookmarks' },
     \ ]
+
+    " \ { 'header': ['    Tasks'],                                     'type': function('task#recentTasks'),    'indices': ['t'] },
+    " \ { 'header': ['    Releases'],                                  'type': function('task#recentReleases'), 'indices': ['r'] },
+
