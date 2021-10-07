@@ -6,6 +6,7 @@ export GOPATH=$HOME/.go
 
 export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
 export PATH="$PATH:/Users/justinvangrootveld/idea" # Idea
+export PATH="/usr/local/opt/openjdk/bin:$PATH" # Java
 
 # Color
 # export TERM="xterm-256color"

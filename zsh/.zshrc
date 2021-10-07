@@ -10,8 +10,6 @@
 #  09. ~/.zlogout
 #  10. /etc/zlogout
 
-echo "Testing period!"
-
 # Load configs
 for config (~/.zsh/*.zsh) source $config
 
