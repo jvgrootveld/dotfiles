@@ -22,8 +22,3 @@ Check some apps for newer version
 * openjdk@11
 * Node
 
-# Install Terminal color profile `Solarized Dark`
-After downloading go to Terminal > Preferences > Profiles > Import...
-```sh
-curl https://raw.githubusercontent.com/tomislav/osx-terminal.app-colors-solarized/master/Solarized%20Dark.terminal --output "Solarized Dark.terminal"
-```

@@ -46,6 +46,9 @@ stow -D ...
 stow -Rv ...
 ```
 
+## Terminal Emulator
+I use [Alacritty](https://github.com/alacritty/alacritty) as my main Terminal Emulator. See dotfiles for configuration.
+
 ## Shells
 I use zsh as my main shell. I used to use [zprezto](https://github.com/sorin-ionescu/prezto) but migrated to an minimal own implementation because it didn't use like 90% of it.
 Some configurations are inspired by zprezto though.

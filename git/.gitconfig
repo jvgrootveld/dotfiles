@@ -23,3 +23,5 @@
 	excludesfile = /Users/justinvangrootveld/.gitignore_global
 [color]
 	ui = auto
+[credential]
+	helper = cache timeout 3600

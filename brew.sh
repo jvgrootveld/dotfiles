@@ -54,6 +54,8 @@ brew install luarocks            # Install Lua modules as self-contained package
 brew install nvm                 # Manage multiple Node.js versions
 brew install jq                  # Format and query JSON
 brew install htmlq               # Like jq, but for HTML
+brew install neofetch            # Command-line system information tool
+brew install saulpw/vd/visidata  # Interactive multitool for tabular data
 
 # After installs
 # -----------------------------------------------
