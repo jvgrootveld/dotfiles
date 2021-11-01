@@ -10,57 +10,89 @@ vim.cmd [[packadd packer.nvim]]
 return require('packer').startup {
   function(use)
     -- Packer can manage itself
+    --   :PackerClean    Remove any disabled or unused plugins
+    --   :PackerInstall  Clean, then install missing plugins
+    --   :PackerUpdate   Clean, then update and install plugins
+    --   :PackerSync     Perform `PackerUpdate` and then `PackerCompile`
+    --   :PackerLoad     completion-nvim ale Loads opt plugin immediately
+    --   :PackerCompile  Regenerate compiled loader file (Required for new configs?)
     use "wbthomason/packer.nvim"
 
-    use 'nvim-lua/popup.nvim'
+    -- use 'nvim-lua/popup.nvim'
     use 'nvim-lua/plenary.nvim'
     -- use 'nvim-lua/completion-nvim'
-    use 'hrsh7th/nvim-compe'
+    -- use 'hrsh7th/nvim-compe'
     use 'nvim-lua/lsp-status.nvim'
 
-    use 'tjdevries/astronauta.nvim' -- Autorun lua files in ftplugins and plugins
+    -- use 'tjdevries/astronauta.nvim' -- Autorun lua files in ftplugins and plugins
 
     -- Neovim lsp useins
     -- See: https://github.com/neovim/nvim-lspconfig/blob/master/CONFIG.md
-    use 'neovim/nvim-lspconfig'
+    use {
+        'neovim/nvim-lspconfig',
+        config = function()
+            require("jvg.config.lsp_lua")
+            require("jvg.config.lsp_go")
+        end
+    }
     --use 'tjdevries/nlua.nvim'
     --use 'tjdevries/lsp_extensions.nvim'
 
     -- Themes
-    use 'tjdevries/colorbuddy.nvim'
-    use 'ntk148v/vim-horizon'
-    use 'gruvbox-community/gruvbox'
+    -- use 'tjdevries/colorbuddy.nvim'
+    -- use 'ntk148v/vim-horizon'
+    use {
+        'gruvbox-community/gruvbox',
+        config = [[ vim.cmd "colorscheme gruvbox" ]]
+    }
+
     use 'vim-airline/vim-airline'
 
     -- Neovim Tree shitter
     -- Info:    :TSInstallInfo
     -- Install: :TSInstall {language}
-    use 'nvim-treesitter/nvim-treesitter'
-    use {
-      'nvim-treesitter/completion-treesitter',
-      run = function() vim.cmd [[TSUpdate]] end
+    use { 
+        'nvim-treesitter/nvim-treesitter',
+        run = function() vim.cmd [[TSUpdate]] end,
+        config = [[require("jvg.config.treesitter")]]
     }
+    -- use { 'nvim-treesitter/completion-treesitter' }
+
     -- Show:    :TSPlaygroundToggle
     use 'nvim-treesitter/playground'
     use {
         'nvim-treesitter/nvim-treesitter-textobjects',
-
-        config = [[require("jvg/config/treesitter-textobjects")]],
+        config = [[require("jvg.config.treesitter-textobjects")]],
     }
-    use 'bryall/contextprint.nvim' -- Add context aware print debug statements
 
     -- Telescope is a highly extendable fuzzy finder over lists. Items are shown in a popup with a prompt to search over.
-    use 'nvim-telescope/telescope.nvim'
-    use 'nvim-telescope/telescope-fzy-native.nvim'
+    -- use 'nvim-telescope/telescope.nvim'
+    -- use 'nvim-telescope/telescope-fzy-native.nvim'
+
+    use {
+        'nvim-telescope/telescope.nvim', 
+        'nvim-telescope/telescope-fzy-native.nvim',
+        config = [[require("jvg.config.telescope")]]
+    }
+
     -- use '~/projects/_repos/telescope-simple-insert'
-    use 'jvgrootveld/telescope-simple-insert'
+    -- use 'jvgrootveld/telescope-simple-insert' -- require("telescope").load_extension("simple_insert") require("jvg.config.telescope-zoxide")
     -- use '~/projects/_repos/telescope-zoxide'
     use {
         'jvgrootveld/telescope-zoxide',
-        branch = 'main'
+        branch = 'main',
+
+        requires = 'nvim-telescope/telescope.nvim',
+
+        config = function()
+            require("telescope").load_extension("zoxide")
+            require("jvg.config.telescope-zoxide")
+        end
     }
+
+    -- A searchable cheatsheet for neovim from within the editor using Telescope
     use {
-        'sudormrfbin/cheatsheet.nvim',                 -- A searchable cheatsheet for neovim from within the editor using Telescope
+        'sudormrfbin/cheatsheet.nvim',
 
         config = [[require("jvg/config/cheatsheet")]],
 
@@ -71,32 +103,66 @@ return require('packer').startup {
         }
     }
 
-    use 'tpope/vim-surround'                           -- Provides mappings to easily delete, change and add such surroundings in pairs
-    use 'tpope/vim-commentary'                         -- Comment stuff out. Use gcc to comment out a line (takes a count), gc to comment out the target of a motion
-    use 'tpope/vim-fugitive'                           -- Git plugin
-    use 'tpope/vim-rhubarb'                            -- If fugitive.vim is the Git, rhubarb.vim is the Hub
-    use 'airblade/vim-gitgutter'                       -- Shows a git diff in the sign column. It shows which lines have been added, modified, or removed
-    use 'junegunn/gv.vim'                              -- Git commit browser
-    use {                                              -- A work-in-progress Magit clone for Neovim that is geared toward the Vim philosophy.
+    -- Provides mappings to easily delete, change and add such surroundings in pairs
+    --   cs"' to change surround " with '
+    use 'tpope/vim-surround'
+
+    -- Comment stuff out
+    --   gcc to comment out a line (takes a count)
+    --   gc to comment out the target of a motion
+    use 'tpope/vim-commentary'
+
+    -- Git plugin + Extras
+    -- use 'tpope/vim-fugitive'
+    -- use 'tpope/vim-rhubarb'
+
+    -- Shows a git diff in the sign column. It shows which lines have been added, modified, or removed
+    use 'airblade/vim-gitgutter'
+
+    -- Git commit browser
+    -- use 'junegunn/gv.vim'
+
+    -- A work-in-progress Magit clone for Neovim that is geared toward the Vim philosophy.
+    --   :Neogit " uses tab
+    --   :Neogit kind=<kind> " override kind
+    --   :Neogit cwd=<cwd> " override cwd
+    --   :Neogit commit" open commit popup
+    use {
         'TimUntersberger/neogit',
         requires = 'nvim-lua/plenary.nvim'
     }
-    use 'vimwiki/vimwiki'                              -- Wiki in vim
-    use 'mhinz/vim-startify'                           -- Fancy start screen
-    use 'vim-utils/vim-man'                            -- View man pages in vim `:Man`
-    use {
-        'junegunn/fzf',
-        run = function() vim.cmd [[fzf#install()]] end -- General-purpose command-line fuzzy finder
-    }
-    use 'junegunn/fzf.vim'                             -- FZF for vim
+    -- use 'vimwiki/vimwiki'                              -- Wiki in vim
+    -- use 'mhinz/vim-startify'                           -- Fancy start screen
+    -- View man pages in vim `:Man`
+    -- use {
+    --     'junegunn/fzf',
+    --     run = function() vim.cmd [[fzf#install()]] end -- General-purpose command-line fuzzy finder
+    -- }
+    -- FZF for vim
+    -- use 'junegunn/fzf.vim'
     -- use {
     --     'prettier/vim-prettier',
     --     run = 'yarn install',
     --     ft = { 'javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html' }
     -- }
-    use 'junegunn/vim-easy-align'                      -- Vertical align
-    use 'machakann/vim-highlightedyank'                -- Highlight yanked content
-    use 'kassio/neoterm'                               -- Neovim/Vim terminal helper functions/commands
+
+    -- Vertical align
+    --   gaip= align inner paragraph on '='
+    use 'junegunn/vim-easy-align'
+
+    -- Highlight yanked content
+    use {
+        'machakann/vim-highlightedyank',
+        config = [[require("jvg.config.highlightedyank")]],
+    }
+
+    -- Neovim/Vim terminal helper functions/commands
+    -- TODO: or just more tmux?
+    use {
+        'kassio/neoterm',
+        config = [[require("jvg.config.neoterm")]]
+    }
+
     -- peeks lines on `:<number>`
     -- use {
     --     'nacro90/numb.nvim',

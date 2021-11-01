@@ -1,5 +1,5 @@
 " Open first matching jira task
-let g:dn_jira_base_url = "https://issues.dearnova.nl/browse/"
+let g:dn_jira_base_url = "https://jira.hosted-tools.com/browse/"
 
 " Finds first jira task based on regex '[a-Z]+-[0-9]+' and open it in the
 " default browser.

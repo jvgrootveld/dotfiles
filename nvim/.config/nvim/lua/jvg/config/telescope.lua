@@ -70,18 +70,6 @@ M.task_files = function()
   require('telescope.builtin').find_files(opts)
 end
 
--- Zoxide config
-local z_utils = require("telescope._extensions.zoxide.utils")
-require("telescope._extensions.zoxide.config").setup({
-  mappings = {
-    default = {
-      after_action = function(selection)
-        print("Update to (" .. selection.z_score .. ") " .. selection.path)
-      end
-    }
-  }
-})
-
 ----------------------------------
 ---- WIP -------------------------
 ----------------------------------

@@ -39,8 +39,8 @@ nnoremap <leader>c :edit ~/.config/nvim/init.vim<CR>
 nnoremap <leader>e :Buffers<CR>
 nnoremap <leader>ff :Telescope find_files<CR>
 nnoremap <leader>fb :lua R('telescope.builtin').buffers()<CR>
-nnoremap <leader>fc :lua R('jvg.telescope').edit_neovim()<CR>
-nnoremap <leader>ft :lua R('jvg.telescope').task_files()<CR>
+nnoremap <leader>fc :lua R('jvg.config.telescope').edit_neovim()<CR>
+nnoremap <leader>ft :lua R('jvg.config.telescope').task_files()<CR>
 
 "" Paste inner '`' and yank it back into the register
 nnoremap <leader>` vi`pvi`y

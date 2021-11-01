@@ -69,65 +69,41 @@ end
 time([[try_loadstring definition]], false)
 time([[Defining packer_plugins]], true)
 _G.packer_plugins = {
-  ["astronauta.nvim"] = {
-    loaded = true,
-    path = "/Users/justinvangrootveld/.local/share/nvim/site/pack/packer/start/astronauta.nvim"
-  },
   ["cheatsheet.nvim"] = {
     config = { 'require("jvg/config/cheatsheet")' },
     loaded = true,
     path = "/Users/justinvangrootveld/.local/share/nvim/site/pack/packer/start/cheatsheet.nvim"
   },
-  ["colorbuddy.nvim"] = {
-    loaded = true,
-    path = "/Users/justinvangrootveld/.local/share/nvim/site/pack/packer/start/colorbuddy.nvim"
-  },
-  ["completion-treesitter"] = {
-    loaded = true,
-    path = "/Users/justinvangrootveld/.local/share/nvim/site/pack/packer/start/completion-treesitter"
-  },
-  ["contextprint.nvim"] = {
-    loaded = true,
-    path = "/Users/justinvangrootveld/.local/share/nvim/site/pack/packer/start/contextprint.nvim"
-  },
-  fzf = {
-    loaded = true,
-    path = "/Users/justinvangrootveld/.local/share/nvim/site/pack/packer/start/fzf"
-  },
-  ["fzf.vim"] = {
-    loaded = true,
-    path = "/Users/justinvangrootveld/.local/share/nvim/site/pack/packer/start/fzf.vim"
-  },
   gruvbox = {
+    config = { ' vim.cmd "colorscheme gruvbox" ' },
     loaded = true,
     path = "/Users/justinvangrootveld/.local/share/nvim/site/pack/packer/start/gruvbox"
-  },
-  ["gv.vim"] = {
-    loaded = true,
-    path = "/Users/justinvangrootveld/.local/share/nvim/site/pack/packer/start/gv.vim"
   },
   ["lsp-status.nvim"] = {
     loaded = true,
     path = "/Users/justinvangrootveld/.local/share/nvim/site/pack/packer/start/lsp-status.nvim"
   },
+  neogit = {
+    loaded = true,
+    path = "/Users/justinvangrootveld/.local/share/nvim/site/pack/packer/start/neogit"
+  },
   neoterm = {
+    config = { 'require("jvg.config.neoterm")' },
     loaded = true,
     path = "/Users/justinvangrootveld/.local/share/nvim/site/pack/packer/start/neoterm"
   },
-  ["nvim-compe"] = {
-    loaded = true,
-    path = "/Users/justinvangrootveld/.local/share/nvim/site/pack/packer/start/nvim-compe"
-  },
   ["nvim-lspconfig"] = {
+    config = { "\27LJ\2\nP\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0016\0\0\0'\2\2\0B\0\2\1K\0\1\0\22jvg.config.lsp_go\23jvg.config.lsp_lua\frequire\0" },
     loaded = true,
     path = "/Users/justinvangrootveld/.local/share/nvim/site/pack/packer/start/nvim-lspconfig"
   },
   ["nvim-treesitter"] = {
+    config = { 'require("jvg.config.treesitter")' },
     loaded = true,
     path = "/Users/justinvangrootveld/.local/share/nvim/site/pack/packer/start/nvim-treesitter"
   },
   ["nvim-treesitter-textobjects"] = {
-    config = { 'require("jvg/config/treesitter-textobjects")' },
+    config = { 'require("jvg.config.treesitter-textobjects")' },
     loaded = true,
     path = "/Users/justinvangrootveld/.local/share/nvim/site/pack/packer/start/nvim-treesitter-textobjects"
   },
@@ -151,11 +127,8 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/justinvangrootveld/.local/share/nvim/site/pack/packer/start/telescope-fzy-native.nvim"
   },
-  ["telescope-simple-insert"] = {
-    loaded = true,
-    path = "/Users/justinvangrootveld/.local/share/nvim/site/pack/packer/start/telescope-simple-insert"
-  },
   ["telescope-zoxide"] = {
+    config = { "\27LJ\2\ns\0\0\3\0\5\0\n6\0\0\0'\2\1\0B\0\2\0029\0\2\0'\2\3\0B\0\2\0016\0\0\0'\2\4\0B\0\2\1K\0\1\0 jvg.config.telescope-zoxide\vzoxide\19load_extension\14telescope\frequire\0" },
     loaded = true,
     path = "/Users/justinvangrootveld/.local/share/nvim/site/pack/packer/start/telescope-zoxide"
   },
@@ -175,53 +148,54 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/justinvangrootveld/.local/share/nvim/site/pack/packer/start/vim-easy-align"
   },
-  ["vim-fugitive"] = {
-    loaded = true,
-    path = "/Users/justinvangrootveld/.local/share/nvim/site/pack/packer/start/vim-fugitive"
-  },
   ["vim-gitgutter"] = {
     loaded = true,
     path = "/Users/justinvangrootveld/.local/share/nvim/site/pack/packer/start/vim-gitgutter"
   },
   ["vim-highlightedyank"] = {
+    config = { 'require("jvg.config.highlightedyank")' },
     loaded = true,
     path = "/Users/justinvangrootveld/.local/share/nvim/site/pack/packer/start/vim-highlightedyank"
-  },
-  ["vim-horizon"] = {
-    loaded = true,
-    path = "/Users/justinvangrootveld/.local/share/nvim/site/pack/packer/start/vim-horizon"
-  },
-  ["vim-man"] = {
-    loaded = true,
-    path = "/Users/justinvangrootveld/.local/share/nvim/site/pack/packer/start/vim-man"
-  },
-  ["vim-rhubarb"] = {
-    loaded = true,
-    path = "/Users/justinvangrootveld/.local/share/nvim/site/pack/packer/start/vim-rhubarb"
-  },
-  ["vim-startify"] = {
-    loaded = true,
-    path = "/Users/justinvangrootveld/.local/share/nvim/site/pack/packer/start/vim-startify"
   },
   ["vim-surround"] = {
     loaded = true,
     path = "/Users/justinvangrootveld/.local/share/nvim/site/pack/packer/start/vim-surround"
-  },
-  vimwiki = {
-    loaded = true,
-    path = "/Users/justinvangrootveld/.local/share/nvim/site/pack/packer/start/vimwiki"
   }
 }
 
 time([[Defining packer_plugins]], false)
+-- Config for: nvim-treesitter
+time([[Config for nvim-treesitter]], true)
+require("jvg.config.treesitter")
+time([[Config for nvim-treesitter]], false)
+-- Config for: telescope-zoxide
+time([[Config for telescope-zoxide]], true)
+try_loadstring("\27LJ\2\ns\0\0\3\0\5\0\n6\0\0\0'\2\1\0B\0\2\0029\0\2\0'\2\3\0B\0\2\0016\0\0\0'\2\4\0B\0\2\1K\0\1\0 jvg.config.telescope-zoxide\vzoxide\19load_extension\14telescope\frequire\0", "config", "telescope-zoxide")
+time([[Config for telescope-zoxide]], false)
 -- Config for: nvim-treesitter-textobjects
 time([[Config for nvim-treesitter-textobjects]], true)
-require("jvg/config/treesitter-textobjects")
+require("jvg.config.treesitter-textobjects")
 time([[Config for nvim-treesitter-textobjects]], false)
+-- Config for: vim-highlightedyank
+time([[Config for vim-highlightedyank]], true)
+require("jvg.config.highlightedyank")
+time([[Config for vim-highlightedyank]], false)
+-- Config for: neoterm
+time([[Config for neoterm]], true)
+require("jvg.config.neoterm")
+time([[Config for neoterm]], false)
 -- Config for: cheatsheet.nvim
 time([[Config for cheatsheet.nvim]], true)
 require("jvg/config/cheatsheet")
 time([[Config for cheatsheet.nvim]], false)
+-- Config for: nvim-lspconfig
+time([[Config for nvim-lspconfig]], true)
+try_loadstring("\27LJ\2\nP\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0016\0\0\0'\2\2\0B\0\2\1K\0\1\0\22jvg.config.lsp_go\23jvg.config.lsp_lua\frequire\0", "config", "nvim-lspconfig")
+time([[Config for nvim-lspconfig]], false)
+-- Config for: gruvbox
+time([[Config for gruvbox]], true)
+ vim.cmd "colorscheme gruvbox" 
+time([[Config for gruvbox]], false)
 if should_profile then save_profiles() end
 
 end)

@@ -7,19 +7,23 @@
 --
 
 --[[ Notes about this config
+./lua/config/*.lua
+  Plugin configuration. Loaded with packer config:
 
-./lua/plugin/*.lua
-  Loaded automatically with 'tjdevries/astronauta.nvim'
-
-./plugin/*.vim
-./after/plugin/*.vim
- Some plugin configuration not ported to lua
+    config = [[require("jvg/config/telescope-zoxide") \[\]
 
 ./lua/jvg/*.lua
  Personal confugration, options and mapping.
  Sourced manually with:
 
    require('jvg.name')
+
+./plugin/*.vim
+./after/plugin/*.vim
+  Some plugin configuration not ported to lua
+
+./lua/plugin/*.lua
+  Loaded manually in init.lua (should be automatically?)
 
 --]]
 vim.g.mapleader = " "
@@ -31,31 +35,11 @@ require("jvg.globals")
 -- Load packer.nvim files
 require("jvg.plugins")
 
--- Force loading of astronauta first.
-vim.cmd [[runtime plugin/astronauta.vim]]
+-- Load plugins specifics
+require("plugin.keymaps")
+require("plugin.netrw")
+require("plugin.vim-go")
 
 -- Load neovim options
 require('jvg.options')
 
--- Load personal plugin config
-require("jvg.telescope")
-require("jvg.treesitter")
-require("jvg.lsp_lua")
-require("jvg.neoterm")
-
-require("telescope").load_extension("simple_insert")
-require("telescope").load_extension("zoxide")
-
-vim.api.nvim_set_keymap(
-	'n',
-	'<leader>i',
-	":lua R'telescope'.extensions.simple_insert.select{}<CR>",
-	{noremap = true, silent = true}
-)
-
-vim.api.nvim_set_keymap(
-	"n",
-	"<leader>cd",
-	":lua require'telescope'.extensions.zoxide.list{}<CR>",
-	{noremap = true, silent = true}
-)
