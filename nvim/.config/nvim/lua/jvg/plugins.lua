@@ -163,6 +163,12 @@ return require('packer').startup {
         config = [[require("jvg.config.neoterm")]]
     }
 
+    use {
+        'kyazdani42/nvim-tree.lua',
+        requires = 'kyazdani42/nvim-web-devicons',
+        config = [[require("jvg.config.nvim-tree")]]
+    }
+
     -- peeks lines on `:<number>`
     -- use {
     --     'nacro90/numb.nvim',

@@ -97,6 +97,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/justinvangrootveld/.local/share/nvim/site/pack/packer/start/nvim-lspconfig"
   },
+  ["nvim-tree.lua"] = {
+    config = { 'require("jvg.config.nvim-tree")' },
+    loaded = true,
+    path = "/Users/justinvangrootveld/.local/share/nvim/site/pack/packer/start/nvim-tree.lua"
+  },
   ["nvim-treesitter"] = {
     config = { 'require("jvg.config.treesitter")' },
     loaded = true,
@@ -106,6 +111,10 @@ _G.packer_plugins = {
     config = { 'require("jvg.config.treesitter-textobjects")' },
     loaded = true,
     path = "/Users/justinvangrootveld/.local/share/nvim/site/pack/packer/start/nvim-treesitter-textobjects"
+  },
+  ["nvim-web-devicons"] = {
+    loaded = true,
+    path = "/Users/justinvangrootveld/.local/share/nvim/site/pack/packer/start/nvim-web-devicons"
   },
   ["packer.nvim"] = {
     loaded = true,
@@ -164,38 +173,42 @@ _G.packer_plugins = {
 }
 
 time([[Defining packer_plugins]], false)
--- Config for: nvim-treesitter
-time([[Config for nvim-treesitter]], true)
-require("jvg.config.treesitter")
-time([[Config for nvim-treesitter]], false)
--- Config for: telescope-zoxide
-time([[Config for telescope-zoxide]], true)
-try_loadstring("\27LJ\2\ns\0\0\3\0\5\0\n6\0\0\0'\2\1\0B\0\2\0029\0\2\0'\2\3\0B\0\2\0016\0\0\0'\2\4\0B\0\2\1K\0\1\0 jvg.config.telescope-zoxide\vzoxide\19load_extension\14telescope\frequire\0", "config", "telescope-zoxide")
-time([[Config for telescope-zoxide]], false)
--- Config for: nvim-treesitter-textobjects
-time([[Config for nvim-treesitter-textobjects]], true)
-require("jvg.config.treesitter-textobjects")
-time([[Config for nvim-treesitter-textobjects]], false)
--- Config for: vim-highlightedyank
-time([[Config for vim-highlightedyank]], true)
-require("jvg.config.highlightedyank")
-time([[Config for vim-highlightedyank]], false)
--- Config for: neoterm
-time([[Config for neoterm]], true)
-require("jvg.config.neoterm")
-time([[Config for neoterm]], false)
--- Config for: cheatsheet.nvim
-time([[Config for cheatsheet.nvim]], true)
-require("jvg/config/cheatsheet")
-time([[Config for cheatsheet.nvim]], false)
--- Config for: nvim-lspconfig
-time([[Config for nvim-lspconfig]], true)
-try_loadstring("\27LJ\2\nP\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0016\0\0\0'\2\2\0B\0\2\1K\0\1\0\22jvg.config.lsp_go\23jvg.config.lsp_lua\frequire\0", "config", "nvim-lspconfig")
-time([[Config for nvim-lspconfig]], false)
 -- Config for: gruvbox
 time([[Config for gruvbox]], true)
  vim.cmd "colorscheme gruvbox" 
 time([[Config for gruvbox]], false)
+-- Config for: neoterm
+time([[Config for neoterm]], true)
+require("jvg.config.neoterm")
+time([[Config for neoterm]], false)
+-- Config for: nvim-lspconfig
+time([[Config for nvim-lspconfig]], true)
+try_loadstring("\27LJ\2\nP\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0016\0\0\0'\2\2\0B\0\2\1K\0\1\0\22jvg.config.lsp_go\23jvg.config.lsp_lua\frequire\0", "config", "nvim-lspconfig")
+time([[Config for nvim-lspconfig]], false)
+-- Config for: vim-highlightedyank
+time([[Config for vim-highlightedyank]], true)
+require("jvg.config.highlightedyank")
+time([[Config for vim-highlightedyank]], false)
+-- Config for: nvim-tree.lua
+time([[Config for nvim-tree.lua]], true)
+require("jvg.config.nvim-tree")
+time([[Config for nvim-tree.lua]], false)
+-- Config for: telescope-zoxide
+time([[Config for telescope-zoxide]], true)
+try_loadstring("\27LJ\2\ns\0\0\3\0\5\0\n6\0\0\0'\2\1\0B\0\2\0029\0\2\0'\2\3\0B\0\2\0016\0\0\0'\2\4\0B\0\2\1K\0\1\0 jvg.config.telescope-zoxide\vzoxide\19load_extension\14telescope\frequire\0", "config", "telescope-zoxide")
+time([[Config for telescope-zoxide]], false)
+-- Config for: nvim-treesitter
+time([[Config for nvim-treesitter]], true)
+require("jvg.config.treesitter")
+time([[Config for nvim-treesitter]], false)
+-- Config for: cheatsheet.nvim
+time([[Config for cheatsheet.nvim]], true)
+require("jvg/config/cheatsheet")
+time([[Config for cheatsheet.nvim]], false)
+-- Config for: nvim-treesitter-textobjects
+time([[Config for nvim-treesitter-textobjects]], true)
+require("jvg.config.treesitter-textobjects")
+time([[Config for nvim-treesitter-textobjects]], false)
 if should_profile then save_profiles() end
 
 end)
