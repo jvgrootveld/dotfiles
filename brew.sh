@@ -8,7 +8,7 @@ brew upgrade # Upgrade any already-installed formulae
 # Required taps
 # -----------------------------------------------
 brew tap homebrew/dupes
-
+brew tap homebrew/cask-fonts
 
 # Install more recent versions of some OS X tools
 # Note: "--with-default-names" demoves the prefix so it overwite the default one
@@ -56,6 +56,7 @@ brew install jq                  # Format and query JSON
 brew install htmlq               # Like jq, but for HTML
 brew install neofetch            # Command-line system information tool
 brew install saulpw/vd/visidata  # Interactive multitool for tabular data
+brew install --cask font-jetbrains-mono-nerd-font
 
 # After installs
 # -----------------------------------------------
