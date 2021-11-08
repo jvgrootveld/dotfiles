@@ -31,8 +31,7 @@ return require('packer').startup {
     use {
         'neovim/nvim-lspconfig',
         config = function()
-            require("jvg.config.lsp_lua")
-            require("jvg.config.lsp_go")
+            require("jvg.config.lsp")
         end
     }
     --use 'tjdevries/nlua.nvim'
@@ -167,6 +166,18 @@ return require('packer').startup {
         'kyazdani42/nvim-tree.lua',
         requires = 'kyazdani42/nvim-web-devicons',
         config = [[require("jvg.config.nvim-tree")]]
+    }
+
+    -- Color different parts of code
+    --   Select and press F2
+    --   :PainterPickColor <color-number>  " Set current color. 10 colors pre-defined 0-9)
+    --   :PainterPickColorByName <name>    " Set own highlight group. The default group is "paint0"
+    --   :PainterEraseAll                  " Remove all
+    --   :PainterSaveMarks <path>          " Save marks in json
+    --   :PainterLoadMarks <path>          " Load marks from json
+    use {
+        'lpinilla/vim-codepainter',
+        config = [[require("jvg.config.vim-codepainter")]]
     }
 
     -- peeks lines on `:<number>`
