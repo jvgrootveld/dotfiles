@@ -58,6 +58,7 @@ brew install kitty               # The fast, feature-rich, GPU based terminal em
 brew install neofetch            # Command-line system information tool
 brew install saulpw/vd/visidata  # Interactive multitool for tabular data
 brew install --cask font-jetbrains-mono-nerd-font
+brew install jenv                # Java JVM version manager
 
 # After installs
 # -----------------------------------------------

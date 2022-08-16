@@ -20,8 +20,10 @@
 	show-clean = !git branch -r | awk '{print $1}' | egrep -v -f /dev/fd/0 <(git branch -vv | grep origin) | awk '{print $1}'
 [core]
 	autocrlf = input
-	excludesfile = /Users/justinvangrootveld/.gitignore_global
+	excludesfile = /Users/jvgrootveld/.gitignore_global
 [color]
 	ui = auto
 [credential]
 	helper = cache timeout 3600
+[init]
+	defaultBranch = main

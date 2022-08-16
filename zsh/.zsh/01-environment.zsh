@@ -1,13 +1,25 @@
 # Set environment variables
 
 # Paths
-export GOROOT=/usr/local/opt/go/libexec
-export GOPATH=$HOME/.go
+# export GOROOT=/usr/local/opt/go/libexec
+# export GOPATH=$HOME/.go
 
-export PATH="$PATH:/Users/justinvangrootveld/.local/bin" # bins
-export PATH=$PATH:$GOROOT/bin:$GOPATH/bin # Golang
-export PATH="$PATH:/Users/justinvangrootveld/idea" # Idea
-export PATH="$PATH:/usr/local/opt/openjdk/bin" # Java
+export PATH="$PATH:/Users/jvgrootveld/.local/bin" # bins
+# export PATH=$PATH:$GOROOT/bin:$GOPATH/bin # Golang
+export PATH=$PATH:$(go env GOPATH)/bin # Golang installed bins
+export PATH="$PATH:/Users/jvgrootveld/idea" # Idea
+
+# Homebrew
+eval $(/opt/homebrew/bin/brew shellenv)
+
+# NVM - Node version manager
+export NVM_DIR="$HOME/.nvm"
+  [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && . "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
+  [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && . "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+
+# JENV - Java JVM version manager
+export PATH="$HOME/.jenv/bin:$PATH"
+eval "$(jenv init -)"
 
 # Color
 # export TERM="xterm-256color"

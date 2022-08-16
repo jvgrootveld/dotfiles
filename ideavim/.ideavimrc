@@ -30,7 +30,7 @@ set exchange
 set highlightedyank
 
 " Options
-set number relativenumber         " Turn hybrid line numbers on
+set number " relativenumber         " Turn hybrid line numbers on
 set nohlsearch                    " Turn off highlight after search
 set noerrorbells                  " Turn off ring a bell onn error
 set smartcase                     " Ignore case in search

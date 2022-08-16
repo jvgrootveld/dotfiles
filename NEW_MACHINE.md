@@ -16,6 +16,11 @@ Then compare brew-list to what's in `brew.sh`
 comm <(sort brew-list.txt) <(sort brew.sh-cleaned-up)
 ```
 
+# Manual config
+
+## Enable auto JAVA_HOME set
+jenv enable-plugin export
+
 # Manual check apps & tools
 Check some apps for newer version
 
