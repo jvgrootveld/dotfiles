@@ -80,11 +80,11 @@ return require('packer').startup {
     use {
         'jvgrootveld/telescope-zoxide',
         branch = 'main',
-
+        -- '~/projects/_repos/telescope-zoxide',
+        -- '~/projects/_repos/zoxide-pr-15',
         requires = 'nvim-telescope/telescope.nvim',
 
         config = function()
-            require("telescope").load_extension("zoxide")
             require("jvg.config.telescope-zoxide")
         end
     }
