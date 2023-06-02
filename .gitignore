@@ -6,3 +6,7 @@ nvim/.config/nvim/plugged/*/
 
 # Ignore netrw history file
 nvim/.config/nvim/.netrwhist
+
+# Ignore everything in .local
+# Note: see dotfiles-private for bin
+bin/.local/*
