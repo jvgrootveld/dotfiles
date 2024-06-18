@@ -13,6 +13,9 @@
 # Load configs
 for config (~/.zsh/*.zsh) source $config
 
+# Load private configs
+for config (~/.zsh_private/*.zsh) source $config
+
 # zsh-history-substring-search 
 # Search history with `CTRL + p`
 # https://github.com/zsh-users/zsh-history-substring-search
@@ -30,3 +33,10 @@ bindkey -M vicmd "j" history-substring-search-down
 source ~/.zsh/external/zsh-autosuggestions/zsh-autosuggestions.zsh
 ## See https://github.com/zsh-users/zsh-autosuggestions#suggestion-highlight-style
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=28"
+
+# bun completions
+[ -s "/Users/jvgrootveld/.bun/_bun" ] && source "/Users/jvgrootveld/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"

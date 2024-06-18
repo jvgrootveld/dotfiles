@@ -1,5 +1,5 @@
 [user]
-	email = jvgrootveld@dearnova.nl
+	email = justin.vangrootveld@iodigital.com
 	name = Justin van Grootveld
 	signingkey = 9C6F955C8BFD6740
 [alias]
@@ -27,3 +27,5 @@
 	helper = cache timeout 3600
 [init]
 	defaultBranch = main
+[pull]
+	rebase = false
