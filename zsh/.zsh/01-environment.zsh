@@ -4,8 +4,8 @@
 # export GOROOT=/usr/local/opt/go/libexec
 # export GOPATH=$HOME/.go
 
-export PATH="$PATH:/Users/jvgrootveld/.local/bin" # dotfiles bins
-export PATH="$PATH:/Users/jvgrootveld/.local-private/bin" # private dotfiles bins
+export PATH="$PATH:$HOME/.local/bin" # dotfiles bins
+export PATH="$PATH:$HOME/.local-private/bin" # private dotfiles bins
 # export PATH=$PATH:$GOROOT/bin:$GOPATH/bin # Golang
 export PATH=$PATH:$(go env GOPATH)/bin # Golang installed bins
 
