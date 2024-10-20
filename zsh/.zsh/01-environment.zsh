@@ -10,12 +10,14 @@ export PATH="$PATH:$HOME/.local-private/bin" # private dotfiles bins
 export PATH=$PATH:$(go env GOPATH)/bin # Golang installed bins
 
 # Homebrew
-eval $(/opt/homebrew/bin/brew shellenv)
+eval $($HOMEBREW_PREFIX/bin/brew shellenv)
 
 # NVM - Node version manager
-export NVM_DIR="$HOME/.nvm"
-  [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && . "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
-  [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && . "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+# Note: Moved to 11-app-nvm.zsh
+
+# export NVM_DIR="$HOME/.nvm"
+#  [ -s "$HOMEBREW_PREFIX/opt/nvm/nvm.sh" ] && . "$HOMEBREW_PREFIX/opt/nvm/nvm.sh"  # This loads nvm
+#  [ -s "$HOMEBREW_PREFIX/opt/nvm/etc/bash_completion.d/nvm" ] && . "$HOMEBREW_PREFIX/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
 
 # JENV - Java JVM version manager
 export PATH="$HOME/.jenv/bin:$PATH"
